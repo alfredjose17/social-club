@@ -51,7 +51,7 @@ crossBtn.addEventListener('click', ()=>{
 })
 
 uploadimg.onchange = function(){
-    if(uploadimg.files[0].size < 1000000){   // 1MB = 1000000
+    if(uploadimg.files[0].size < 1000000){ 
         var fileReader = new FileReader()
 
         fileReader.onload = function(e){
@@ -269,7 +269,7 @@ form.addEventListener('submit', (e)=> {
 
     const information = {
         id: Date.now(),
-        picture: imgInput.src == undefined ? "./img/pic1.png" :imgInput.src,
+        picture: imgInput.src == undefined ? "user.svg" :imgInput.src,
         bName: bName.value,
         bDescription: bDescription.value
     }
