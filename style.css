@@ -26,7 +26,7 @@ body{
     justify-content: center;
     align-items: flex-start;
     min-height: 100vh;
-    background: linear-gradient(var(--red1) 50%, var(--dark2) 50%);
+    background: linear-gradient(var(--red1) 30%, var(--dark2) 70%);
 }
 
 

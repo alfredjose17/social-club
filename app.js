@@ -396,8 +396,7 @@ filterData.addEventListener("input", ()=> {
                 position.includes(searchTerm)
             )
         })
-
-        // Update the current data with filtered data
+        
         getData = filteredData
     }
 
