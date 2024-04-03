@@ -3,24 +3,58 @@ darkBg = document.querySelector('.dark_bg'),
 popupForm = document.querySelector('.popup'),
 crossBtn = document.querySelector('.closeBtn'),
 submitBtn = document.querySelector('.submitBtn'),
- modalTitle = document.querySelector('.modalTitle'),
- popupFooter = document.querySelector('.popupFooter'),
- imgInput = document.querySelector('.img'),
- imgHolder = document.querySelector('.imgholder')
- form = document.querySelector('form'),
- formInputFields = document.querySelectorAll('form input'),
-  uploadimg = document.querySelector("#uploadimg"),
-  bName = document.getElementById("bName"),
-  bDescription = document.getElementById("bDescription"),
-  entries = document.querySelector(".showEntries"),
-  tabSize = document.getElementById("table_size"),
-  userInfo = document.querySelector(".bookInfo"),
-  table = document.querySelector("table"),
-  filterData = document.getElementById("search")
+modalTitle = document.querySelector('.modalTitle'),
+popupFooter = document.querySelector('.popupFooter'),
+imgInput = document.querySelector('.img'),
+imgHolder = document.querySelector('.imgholder')
+form = document.querySelector('form'),
+formInputFields = document.querySelectorAll('form input'),
+uploadimg = document.querySelector("#uploadimg"),
+bName = document.getElementById("bName"),
+bDescription = document.getElementById("bDescription"),
+entries = document.querySelector(".showEntries"),
+tabSize = document.getElementById("table_size"),
+userInfo = document.querySelector(".bookInfo"),
+table = document.querySelector("table"),
+filterData = document.getElementById("search")
 
 let originalData = localStorage.getItem('bookProfile') ? JSON.parse(localStorage.getItem('bookProfile')) : []
 let getData = [...originalData]
 
+const wrapper = document.querySelector('.wrapper');
+const btnPopup = document.querySelector('.btnLogin-popup');
+const iconClose = document.querySelector('.icon-close');
+const editButtons = document.querySelectorAll('.card_button');
+const cardContainer = document.querySelector('.card_container');
+
+btnPopup.addEventListener('click', ()=> {
+    wrapper.classList.add('active-popup');
+});
+
+
+iconClose.addEventListener('click', ()=> {
+    wrapper.classList.remove('active-popup');
+});
+
+let imgBx = document.querySelectorAll('.imgBx');
+let contentBx = document.querySelectorAll('.contentBx');
+
+for(var i = 0; i < imgBx.length; i++) {
+    imgBx[i].addEventListener('mouseover', function(){
+        for(var i = 0; i < contentBx.length; i++) {
+            contentBx[i].className = 'contentBx';
+        }
+        document.getElementById(this.dataset.id).className = 'contentBx active';
+        for(var i = 0; i < imgBx.length; i++) {
+            imgBx[i].className = 'imgBx';
+        }
+        this.className = 'imgBx active';
+    })
+}
+
+iconClose.addEventListener('click', ()=> {
+    modal.classList.remove('active-popup');
+});
 
 let isEdit = false, editId
 
@@ -396,7 +430,7 @@ filterData.addEventListener("input", ()=> {
                 position.includes(searchTerm)
             )
         })
-        
+
         getData = filteredData
     }
 
