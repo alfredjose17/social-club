@@ -163,138 +163,140 @@ function highlightIndexBtn(){
 
 
 
-
+//Displays book information in the table.
 function showInfo(){
-    document.querySelectorAll(".bookDetails").forEach(info => info.remove())
+    // document.querySelectorAll(".bookDetails").forEach(info => info.remove())
 
-    var tab_start = startIndex - 1
-    var tab_end = endIndex
+    // var tab_start = startIndex - 1
+    // var tab_end = endIndex
 
-    if(getData.length > 0){
-        for(var i=tab_start; i<tab_end; i++){
-            var books = getData[i]
-
-
-            if(books){
-                let createElement = `<tr class = "bookDetails">
-                <td>${i+1}</td>
-                <td><img src="${books.picture}" alt="" width="40" height="40"></td>
-                <td>${books.bName}</td>
-                <td>${books.bDescription}</td>
-                <td>
-                    <button onclick="readInfo('${books.picture}', '${books.bName}', '${books.bDescription})"><i class="fa-regular fa-eye"></i></button>
-
-                    <button onclick="editInfo('${i}', '${books.picture}', '${books.bName}', '${books.bDescription}')"><i class="fa-regular fa-pen-to-square"></i></button>
+    // if(getData.length > 0){
+    //     for(var i=tab_start; i<tab_end; i++){
+    //         var books = getData[i]
 
 
-                    <button onclick = "deleteInfo(${i})"><i class="fa-regular fa-trash-can"></i></button>
-                </td>
-            </tr>`
+    //         if(books){
+    //             let createElement = `<tr class = "bookDetails">
+    //             <td>${i+1}</td>
+    //             <td><img src="${books.picture}" alt="" width="40" height="40"></td>
+    //             <td>${books.bName}</td>
+    //             <td>${books.bDescription}</td>
+    //             <td>
+    //                 <button onclick="readInfo('${books.picture}', '${books.bName}', '${books.bDescription})"><i class="fa-regular fa-eye"></i></button>
 
-                userInfo.innerHTML += createElement
-                table.style.minWidth = "1400px"
-            }
-        }
-    }
+    //                 <button onclick="editInfo('${i}', '${books.picture}', '${books.bName}', '${books.bDescription}')"><i class="fa-regular fa-pen-to-square"></i></button>
 
 
-    else{
-        userInfo.innerHTML = `<tr class="bookDetails"><td class="empty" colspan="11" align="center">No data available in table</td></tr>`
-        table.style.minWidth = "1400px"
-    }
+    //                 <button onclick = "deleteInfo(${i})"><i class="fa-regular fa-trash-can"></i></button>
+    //             </td>
+    //         </tr>`
+
+    //             userInfo.innerHTML += createElement
+    //             table.style.minWidth = "1400px"
+    //         }
+    //     }
+    // }
+
+
+    // else{
+    //     userInfo.innerHTML = `<tr class="bookDetails"><td class="empty" colspan="11" align="center">No data available in table</td></tr>`
+    //     table.style.minWidth = "1400px"
+    // }
 }
 
 showInfo()
 
 
+//Displays book information in the form for reading.
 function readInfo(pic, bName, bDescription){
-    imgInput.src = pic
-    bName.value = bName
-    bDescription.value = bDescription
+    // imgInput.src = pic
+    // bName.value = bName
+    // bDescription.value = bDescription
 
-    darkBg.classList.add('active')
-    popupForm.classList.add('active')
-    popupFooter.style.display = "none"
-    modalTitle.innerHTML = "Profile"
-    formInputFields.forEach(input => {
-        input.disabled = true
-    })
+    // darkBg.classList.add('active')
+    // popupForm.classList.add('active')
+    // popupFooter.style.display = "none"
+    // modalTitle.innerHTML = "Profile"
+    // formInputFields.forEach(input => {
+    //     input.disabled = true
+    // })
 
 
-    imgHolder.style.pointerEvents = "none"
+    // imgHolder.style.pointerEvents = "none"
 }
 
+
+//Displays book information in the form for editing.
 function editInfo(id, pic, bName, bDescription){
-    isEdit = true
-    editId = id
+    // isEdit = true
+    // editId = id
 
-    // Find the index of the item to edit in the original data based on id
-    const originalIndex = originalData.findIndex(item => item.id === id)
+    // const originalIndex = originalData.findIndex(item => item.id === id)
 
-    // Update the original data
-    originalData[originalIndex] = {
-        id: id,
-        picture: pic,
-        bName: bName,
-        bDescription: bDescription
-    }
+    // originalData[originalIndex] = {
+    //     id: id,
+    //     picture: pic,
+    //     bName: bName,
+    //     bDescription: bDescription
+    // }
 
-    imgInput.src = pic
-    bName.value = bName
-    bDescription.value = bDescription
+    // imgInput.src = pic
+    // bName.value = bName
+    // bDescription.value = bDescription
 
 
-    darkBg.classList.add('active')
-    popupForm.classList.add('active')
-    popupFooter.style.display = "block"
-    modalTitle.innerHTML = "Update the Form"
-    submitBtn.innerHTML = "Update"
-    formInputFields.forEach(input => {
-        input.disabled = false
-    })
+    // darkBg.classList.add('active')
+    // popupForm.classList.add('active')
+    // popupFooter.style.display = "block"
+    // modalTitle.innerHTML = "Update the Form"
+    // submitBtn.innerHTML = "Update"
+    // formInputFields.forEach(input => {
+    //     input.disabled = false
+    // })
 
 
-    imgHolder.style.pointerEvents = "auto"
+    // imgHolder.style.pointerEvents = "auto"
 }
 
+//Deletes a book entry.
 function deleteInfo(index){
-    if(confirm("Aer you sure want to delete?")){
-        originalData.splice(index, 1);
-        localStorage.setItem("bookProfile", JSON.stringify(originalData));
+    // if(confirm("Aer you sure want to delete?")){
+    //     originalData.splice(index, 1);
+    //     localStorage.setItem("bookProfile", JSON.stringify(originalData));
         
-        // Update getData after deleting the record
-        getData = [...originalData];
+    //     // Update getData after deleting the record
+    //     getData = [...originalData];
 
-        preLoadCalculations()
+    //     preLoadCalculations()
 
-        if(getData.length === 0){
-            currentIndex = 1
-            startIndex = 1
-            endIndex = 0
-        }
-        else if(currentIndex > maxIndex){
-            currentIndex = maxIndex
-        }
+    //     if(getData.length === 0){
+    //         currentIndex = 1
+    //         startIndex = 1
+    //         endIndex = 0
+    //     }
+    //     else if(currentIndex > maxIndex){
+    //         currentIndex = maxIndex
+    //     }
 
-        showInfo()
-        highlightIndexBtn()
-        displayIndexBtn()
+    //     showInfo()
+    //     highlightIndexBtn()
+    //     displayIndexBtn()
 
-        var nextBtn = document.querySelector('.next')
-        var prevBtn = document.querySelector('.prev')
+    //     var nextBtn = document.querySelector('.next')
+    //     var prevBtn = document.querySelector('.prev')
 
-        if(Math.floor(maxIndex) > currentIndex){
-            nextBtn.classList.add("act")
-        }
-        else{
-            nextBtn.classList.remove("act")
-        }
+    //     if(Math.floor(maxIndex) > currentIndex){
+    //         nextBtn.classList.add("act")
+    //     }
+    //     else{
+    //         nextBtn.classList.remove("act")
+    //     }
 
 
-        if(currentIndex > 1){
-            prevBtn.classList.add('act')
-        }
-    }
+    //     if(currentIndex > 1){
+    //         prevBtn.classList.add('act')
+    //     }
+    // }
 }
 
 
@@ -420,7 +422,7 @@ filterData.addEventListener("input", ()=> {
     if(searchTerm !== ""){
 
         const filteredData = originalData.filter((item) => {
-            const fullName = (item.fName + " " + item.lName).toLowerCase()
+            const fullName = (item.bName + " " + item.bDescription).toLowerCase()
             const city = item.cityVal.toLowerCase()
             const position = item.positionVal.toLowerCase()
 

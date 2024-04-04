@@ -1,134 +1,49 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <title>Book Store</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width", initial-scale="1.0">
+    <title> Book Collection </title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    
-    <div class="container">
-
-        <header>
-
-            <div class="filterEntries">
-                <div class="entries">
-                    Show <select name="" id="table_size">
-                        <option value="10">10</option>
-                        <option value="20">20</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                    </select> entries
+    <header>
+        <h1 class="logo">Social Club</h1>
+        <nav class="navigation">
+            <button class="btnLogin-popup" onclick="window.location.href='https://social-club.auth.us-east-1.amazoncognito.com/login?response_type=code&client_id=1kc7s5kampajvoaf9pjm43shd6&redirect_uri=https://social-club'">Login</button>
+        </nav>
+    </header>
+    <div class="landing_container   ">
+        <div class="card_container">
+            <article class="card_article">
+                <img src="images/gabsy.jpg" class="card_img">
+                <div class="card_data">
+                    <span class="card_description">Past cannot be repeated and everybody has to move forward in life.</span>
+                    <h2 class="card_title">The Great Gatsby</h2>
                 </div>
-
-                <div class="filter">
-                    <label for="search">Search:</label>
-                    <input type="search" name="" id="search" placeholder="Enter book name">
+            </article>
+            <article class="card_article">
+                <img src="images/ikigai.jpg" class="card_img">
+                <div class="card_data">
+                    <span class="card_description">The Japanese secret to a long and happy life.</span>
+                    <h2 class="card_title">Ikigai</h2>
                 </div>
-            </div>
-
-            <div class="addBookBtn">
-                <button>New Book</button>
-            </div>
-
-        </header>
-
-
-        <table>
-
-            <thead>
-                <tr class="heading">
-                    <th>SL No</th>
-                    <th>Book Cover</th>
-                    <th>Book Name</th>
-                    <th>Book Description</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-
-
-            <tbody class="bookInfo">
-                <!-- <tr><td class="empty" colspan="11" align="center">No data available in table</td></tr> -->
-                <!-- <tr>
-                    <td>1</td>
-                    <td><img src="./img/pic1.png" alt="" width="40" height="40"></td>
-                    <td>Ikigai</td>
-                    <td>The book description</td>
-                    <td>
-                        <button><i class="fa-regular fa-eye"></i></button>
-                        <button><i class="fa-regular fa-pen-to-square"></i></button>
-                        <button><i class="fa-regular fa-trash-can"></i></button>
-                    </td>
-                </tr>-->
-            </tbody>
-
-        </table>
-
-
-        <footer>
-            <span class="showEntries">Showing 1 to 10 of 50 entries</span>
-            <div class="pagination">
-                <!-- <button>Prev</button>
-                <button class="active">1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>4</button>
-                <button>5</button>
-                <button>Next</button> -->
-            </div>
-        </footer>
-    </div>
-
-
-    <!--Popup Form-->
-
-    <div class="dark_bg">
-
-        <div class="popup">
-             <header>
-                <h2 class="modalTitle">Fill the Form</h2>
-                <button class="closeBtn">&times;</button>
-             </header>
-
-             <div class="body">
-                <form action="#" id="myForm">
-                    <div class="imgholder">
-                        <label for="uploadimg" class="upload">
-                            <input type="file" name="" id="uploadimg" class="picture">
-                            <i class="fa-solid fa-plus"></i>
-                        </label>
-                        <img src="user.svg" alt="" width="150" height="150" class="img">
-                    </div>
-
-                    <div class="inputFieldContainer">
-
-                        <div class="nameField">
-                            <div class="form_control">
-                                <label for="bName">Book Name:</label>
-                                <input type="text" name="" id="bName" required>
-                            </div>
-
-                            <div class="form_control">
-                                <label for="bDescription">Book Description:</label>
-                                <input type="text" name="" id="bDescription" required>
-                            </div>
-                        </div>
-
-                    </div>
-                </form>
-             </div>
-
-             <footer class="popupFooter">
-                <button form="myForm" class="submitBtn">Submit</button>
-             </footer>
+            </article>
+            <article class="card_article">
+                <img src="images/power.jpg" class="card_img">
+                <div class="card_data">
+                    <span class="card_description">Advice on how to gain and maintain power.</span>
+                    <h2 class="card_title">The 48 Laws of Power</h2>
+                </div>
+            </article>
         </div>
-
     </div>
-
 
     <script src="app.js"></script>
-</body>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>  
 </html>

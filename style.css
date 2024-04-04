@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Poppins:wght@100;200;300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 
 :root{
@@ -36,10 +37,10 @@ body{
     background: var(--dark3);
     border-radius: 10px;
     margin: 10px;
-    margin-top: 50px;
+    margin-top: 200px;
 }
 
-.container header .filterEntries{
+.filterEntries{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -76,16 +77,15 @@ body{
     margin-right: 5px;
 }
 
-
 .filter input:focus{
     border-color: var(--dark7);
 }
 
-.container header .addBookBtn {
+.addBookBtn {
     margin-bottom: 15px;
 }
 
-header .addBookBtn button, .popup header .closeBtn, .popup footer .submitBtn{
+.addBookBtn button, .popup header .closeBtn, .popup footer .submitBtn{
     padding: 9px 14px;
     color: var(--dark8);
     background: transparent;
@@ -396,4 +396,193 @@ input::-webkit-outer-spin-button{
     transform: scale(1);
     opacity: 1;
     visibility: visible;
+}
+
+
+
+.landing_container {
+    flex: 1;
+    display: grid;
+    place-items: center;
+    margin-inline: 1.5rem;
+    padding-block: 5rem;
+}
+
+.card_container {
+    display: grid;
+    row-gap: 3.5rem;
+}
+
+.card_article {
+    position: relative;
+    overflow: hidden;
+}
+
+.card_img {
+    width: 400px;
+    border-radius: 1.5rem;
+}
+
+.card_data {
+    width: 280px;
+    background-color: #ffffffed;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 8px 24px hsla(0, 0%, 0%, .15);
+    border-radius: 1rem;
+    position: absolute;
+    bottom: -9rem;
+    left: 0;
+    right: 0;
+    margin-inline: auto;
+    opacity: 0;
+    transition: opacity 1s 1s;
+}
+
+.card_description {
+    display: block;
+    font-size: var(--small-font-size);
+    margin-bottom: .25rem;
+}
+
+.card_title {
+    font-size: var(--h2-font-size);
+    font-weight: 500;
+    color: var(--title-color);
+    margin-bottom: .75rem;
+}
+
+.card_article:hover .card_data {
+    animation: show-data 1s forwards;
+    opacity: 1;
+    transition: opacity .3s;
+}
+
+.card_article:hover {
+    animation: remove-overflow 2s forwards;
+}
+
+.card_article:not(hover) {
+    animation: show-overflow 2s forwards;
+}
+
+.card_article:not(hover) .card_data{
+    animation: remove-data 1s forwards;
+}
+
+@keyframes show-data {
+    50% {
+        transform: translateY(-10rem);
+    }
+    100% {
+        transform: translateY(-7rem);
+    }  
+}
+
+@keyframes remove-overflow {
+    to {
+        overflow: initial;
+    }
+}
+
+@keyframes remove-data {
+    0% {
+        transform: translateY(-7rem);
+    }
+    50% {
+        transform: translateY(-10rem);
+    }
+    100% {
+        transform: translateY(.5rem);
+    }
+}
+
+@keyframes show-overflow {
+    0% {
+        overflow: initial;
+        pointer-events: none;
+    }
+    50% {
+        overflow: hidden;
+    }
+}
+
+@media screen and (min-width: 1120px) {
+    .landing_container {
+        height: 100vh;
+    }
+    .card_container {
+        grid-template-columns: repeat(3,1fr);
+        gap: 100px;
+    }
+    .card_img {
+        width: 348px;
+    }
+    .card_data {
+        width: 316px;
+        padding-inline: 2.5rem;
+    }
+}
+
+
+.logo {
+    font-size: 2em;
+    color: #fff;
+    user-select: none;
+}
+
+.navigation .btnLogin-popup {
+    width: 130px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid #fff;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: #fff;
+    font-weight: 500;
+    margin-left: 40px;
+    transition: .5s;
+
+}
+
+.navigation .btnLogin-popup:hover {
+    background: #fff;
+    color: #902e31;
+
+}
+
+.navigation .btnSignout-popup {
+    width: 130px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid #fff;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: #fff;
+    font-weight: 500;
+    margin-left: 40px;
+    transition: .5s;
+
+}
+
+.navigation .btnSignout-popup:hover {
+    background: #fff;
+    color: #902e31;
+
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #902e31;
+    padding: 20px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
 }
