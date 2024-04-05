@@ -33,6 +33,14 @@ var endIndex = 0;
 var currentIndex = 1;
 var maxIndex = 0;
 
+
+const urlFragment = window.location.hash.substring(1);
+const urlParams = new URLSearchParams(urlFragment);
+const id_token = urlParams.get('id_token');
+console.log(id_token)
+
+const apiUrl = 'https://96s8ao9agj.execute-api.us-east-1.amazonaws.com/develop/books';
+
 showInfo();
 
 newBookAddBtn.addEventListener('click', ()=> {
@@ -40,7 +48,7 @@ newBookAddBtn.addEventListener('click', ()=> {
     submitBtn.innerHTML = "Submit";
     modalTitle.innerHTML = "Fill the Form";
     popupFooter.style.display = "block";
-    imgInput.src = "./img/pic1.png";
+    imgInput.src = "images/placeholder.jpeg";
     darkBg.classList.add('active');
     popupForm.classList.add('active');
 });
@@ -211,7 +219,8 @@ function editInfo(id, pic, Title, Author, Publisher, Year){
 
 function deleteInfo(index){
     if(confirm("Are you sure you want to delete?")){
-        originalData.splice(index, 1);
+        const deletedItem = originalData.splice(index, 1);
+        console.log(deletedItem)
         localStorage.setItem("bookProfile", JSON.stringify(originalData));
         
         getData = [...originalData];
@@ -245,12 +254,23 @@ function deleteInfo(index){
     }
 }
 
+function getFormData() {
+    const formData = {
+        picture: imgInput.src,
+        title: title.value,
+        author: author.value,
+        publisher: publisher.value,
+        year: year.value
+    };
+    return formData;
+}
+
 form.addEventListener('submit', (e) => {
     e.preventDefault();
 
     const information = {
         id: Date.now(),
-        picture: imgInput.src || "./img/pic1.png",
+        picture: imgInput.src,
         title: title.value,
         author: author.value,
         publisher: publisher.value,
@@ -287,7 +307,10 @@ form.addEventListener('submit', (e) => {
     if (currentIndex > 1) {
         prevBtn.classList.add("act");
     }
+    console.log(information)
 });
+
+
 
 function next(){
     var prevBtn = document.querySelector('.prev');
