@@ -27,7 +27,7 @@ var isEdit = false;
 var editId;
 
 var arrayLength = 0;
-var tableSize = 10;
+var tableSize = 5;
 var startIndex = 1;
 var endIndex = 0;
 var currentIndex = 1;
