@@ -33,12 +33,10 @@ var endIndex = 0;
 var currentIndex = 1;
 var maxIndex = 0;
 
-
+// fetching ID token for API calls
 const urlFragment = window.location.hash.substring(1);
 const urlParams = new URLSearchParams(urlFragment);
 const id_token = urlParams.get('id_token');
-console.log(id_token)
-
 const apiUrl = 'https://96s8ao9agj.execute-api.us-east-1.amazonaws.com/develop/books';
 
 showInfo();
@@ -220,7 +218,7 @@ function editInfo(id, pic, Title, Author, Publisher, Year){
 function deleteInfo(index){
     if(confirm("Are you sure you want to delete?")){
         const deletedItem = originalData.splice(index, 1);
-        console.log(deletedItem)
+
         localStorage.setItem("bookProfile", JSON.stringify(originalData));
         
         getData = [...originalData];
@@ -251,6 +249,14 @@ function deleteInfo(index){
         if(currentIndex > 1){
             prevBtn.classList.add('act');
         }
+
+        // API call
+        const title = {
+            "body": {
+                "Title": deletedItem[0].title
+            }
+        }
+        deleteBook(title)
     }
 }
 
@@ -279,8 +285,31 @@ form.addEventListener('submit', (e) => {
 
     if (!isEdit) {
         originalData.unshift(information);
+
+        // API call
+        const book = {
+            "body": {
+            "Title": information.title,
+            "Author": information.author,
+            "Publisher": information.publisher,
+            "Year": information.year
+            }
+        }
+        addBook(book)
+
     } else {
         originalData[editId] = information;
+
+        // API call
+        const updatedBook = {
+            "body": {
+            "Title": information.title,
+            "Author": information.author,
+            "Publisher": information.publisher,
+            "Year": information.year
+            }
+        }
+        updateBook(updatedBook)
     }
     getData = [...originalData];
     localStorage.setItem('bookProfile', JSON.stringify(originalData));
@@ -307,9 +336,7 @@ form.addEventListener('submit', (e) => {
     if (currentIndex > 1) {
         prevBtn.classList.add("act");
     }
-    console.log(information)
 });
-
 
 
 function next(){
@@ -403,3 +430,72 @@ filterData.addEventListener("input", ()=> {
 });
 
 displayIndexBtn();
+
+// Function to fetch books from the API
+async function fetchBooks() {
+    try {
+        const response = await axios.get(apiUrl,
+            {
+                headers: {
+                'Authorization': id_token
+                }
+            });
+        console.log(response.data);
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching books:', error);
+        throw error;
+    }
+}
+
+// Function to add a new book via API
+async function addBook(book) {
+    try {
+        const response = await axios.post(apiUrl, book,
+            {
+                headers: {
+                'Authorization': id_token
+                }
+            });
+        console.log(response.data);
+        return response.data;
+    } catch (error) {
+        console.error('Error adding book:', error);
+        throw error;
+    }
+}
+
+// Function to update an existing book via API
+async function updateBook(updatedBook) {
+    try {
+        const response = await axios.put(apiUrl, updatedBook,
+            {
+                headers: {
+                'Authorization': id_token
+                }
+            });
+        console.log(response.data);
+        return response.data;
+    } catch (error) {
+        console.error('Error updating book:', error);
+        throw error;
+    }
+}
+
+// Function to delete a book via API
+async function deleteBook(title) {
+    try {
+        const response = await axios.delete(apiUrl,
+            {
+                headers: {
+                'Authorization': id_token
+                },
+                data: title
+            });
+        console.log(response.data);
+        return response.data;
+    } catch (error) {
+        console.error('Error deleting book:', error);
+        throw error;
+    }
+}
