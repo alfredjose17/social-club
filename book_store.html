@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>Book Store</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -12,7 +12,7 @@
     <header>
         <h1 class="logo">Social Club</h1>
         <nav class="navigation">
-            <button class="btnLogin-popup" onclick="window.location.href='https://social-club.auth.us-east-1.amazoncognito.com/login?response_type=code&client_id=1kc7s5kampajvoaf9pjm43shd6&redirect_uri=https://social-club'">Sign out</button>
+            <button class="btnLogin-popup" onclick="window.location.href='https://social-club.auth.us-east-1.amazoncognito.com/logout?client_id=1gh15raf26sr6bfioam640c2rv&logout_uri=https://social-bucket123.s3.amazonaws.com/index.html'">Logut</button>
         </nav>
     </header>
 
@@ -133,5 +133,6 @@
 
 
     <script src="app.js"></script>
+    <script src="api.js"></script>
 </body>
 </html>
