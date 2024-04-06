@@ -23,6 +23,35 @@ var filterData = document.getElementById("search");
 var originalData = localStorage.getItem('bookProfile') ? JSON.parse(localStorage.getItem('bookProfile')) : [];
 var getData = [...originalData];
 
+// // Call fetchBooks on page load
+// window.addEventListener('load', () => {
+//     fetchBooks()
+//         .then(response => {
+//             // Parse the JSON response body
+//             const data = JSON.parse(response.body);
+//             // Store the fetched data in local storage
+//             localStorage.setItem('bookProfile', JSON.stringify(data));
+//             // Update originalData and getData with the fetched data
+//             originalData = data;
+//             getData = [...originalData];
+//             // Update the UI to reflect the fetched data
+//             showInfo();
+//             highlightIndexBtn();
+//             displayIndexBtn();
+//         })
+//         .catch(error => {
+//             console.error('Error fetching books on page load:', error);
+//             // If API call fails, initialize originalData from local storage
+//             originalData = localStorage.getItem('bookProfile') ? JSON.parse(localStorage.getItem('bookProfile')) : [];
+//             getData = [...originalData];
+//             // Update the UI to reflect the local storage data
+//             showInfo();
+//             highlightIndexBtn();
+//             displayIndexBtn();
+//         });
+// });
+
+
 var isEdit = false;
 var editId;
 
