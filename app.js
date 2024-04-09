@@ -20,19 +20,28 @@ var bookInfo = document.querySelector(".bookInfo");
 var table = document.querySelector("table");
 var filterData = document.getElementById("search");
 
-// var originalData = localStorage.getItem('bookProfile') ? JSON.parse(localStorage.getItem('bookProfile')) : [];
-// var getData = [...originalData];
-
 // Call fetchBooks on page load
+console.log("start")
 window.addEventListener('load', () => {
     fetchBooks()
         .then(response => {
             // Parse the JSON response body
-            const data = JSON.parse(response.body);
+            const books = JSON.parse(response.body);
+
+            // Convert each object in the array to the expected format
+            const formattedData = data.map((book, index) => ({
+                id: Date.now() + index, // Generating a unique ID for each item (you may need a different approach for generating IDs)
+                picture: 'file:///Users/divya/Documents/GitHub/Social_Club/images/placeholder.jpeg', // You may replace this with the actual picture URL if available
+                title: book.Title,
+                author: book.Author,
+                publisher: book.Publisher,
+                year: book.Year
+            }));
+
             // Store the fetched data in local storage
-            localStorage.setItem('bookProfile', JSON.stringify(data));
+            localStorage.setItem('bookProfile', JSON.stringify(formattedData));
             // Update originalData and getData with the fetched data
-            originalData = data;
+            originalData = localStorage.getItem('bookProfile') ? JSON.parse(localStorage.getItem('bookProfile')) : [];
             getData = [...originalData];
             // Update the UI to reflect the fetched data
             showInfo();
@@ -50,6 +59,7 @@ window.addEventListener('load', () => {
             displayIndexBtn();
         });
 });
+
 
 
 var isEdit = false;
