@@ -475,9 +475,9 @@ async function fetchBooks() {
     try {
         const response = await axios.get(apiUrl,
             {
-                // headers: {
-                // 'Authorization': id_token
-                // }
+                headers: {
+                'Authorization': id_token
+                }
             });
         console.log(response.data);
         return response.data;
@@ -492,9 +492,9 @@ async function addBook(book) {
     try {
         const response = await axios.post(apiUrl, book,
             {
-                // headers: {
-                // 'Authorization': id_token
-                // }
+                headers: {
+                'Authorization': id_token
+                }
             });
         console.log(response.data);
         return response.data;
@@ -509,9 +509,9 @@ async function updateBook(updatedBook) {
     try {
         const response = await axios.put(apiUrl, updatedBook,
             {
-                // headers: {
-                // 'Authorization': id_token
-                // }
+                headers: {
+                'Authorization': id_token
+                }
             });
         console.log(response.data);
         return response.data;
@@ -526,9 +526,9 @@ async function deleteBook(title) {
     try {
         const response = await axios.delete(apiUrl,
             {
-                // headers: {
-                // 'Authorization': id_token
-                // },
+                headers: {
+                'Authorization': id_token
+                },
                 data: title
             });
         console.log(response.data);
