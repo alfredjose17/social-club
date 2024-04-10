@@ -6,7 +6,7 @@ var submitBtn = document.querySelector('.submitBtn');
 var modalTitle = document.querySelector('.modalTitle');
 var popupFooter = document.querySelector('.popupFooter');
 var imgInput = document.querySelector('.img');
-var imgHolder = document.querySelector('.imgholder');
+// var imgHolder = document.querySelector('.imgholder');
 var form = document.querySelector('form');
 var formInputFields = document.querySelectorAll('form input');
 var uploadimg = document.querySelector("#uploadimg");
@@ -81,7 +81,7 @@ newBookAddBtn.addEventListener('click', ()=> {
     submitBtn.innerHTML = "Submit";
     modalTitle.innerHTML = "Fill the Form";
     popupFooter.style.display = "block";
-    imgInput.src = "images/placeholder.jpeg";
+    // imgInput.src = "images/placeholder.jpeg";
     darkBg.classList.add('active');
     popupForm.classList.add('active');
 });
@@ -92,20 +92,20 @@ crossBtn.addEventListener('click', ()=>{
     form.reset();
 });
 
-uploadimg.onchange = function(){
-    if(uploadimg.files[0].size < 1000000){   // 1MB = 1000000
-        var fileReader = new FileReader();
+// uploadimg.onchange = function(){
+//     if(uploadimg.files[0].size < 1000000){   // 1MB = 1000000
+//         var fileReader = new FileReader();
 
-        fileReader.onload = function(e){
-            var imgUrl = e.target.result;
-            imgInput.src = imgUrl;
-        };
+//         fileReader.onload = function(e){
+//             var imgUrl = e.target.result;
+//             imgInput.src = imgUrl;
+//         };
 
-        fileReader.readAsDataURL(uploadimg.files[0]);
-    } else {
-        alert("This file is too large!");
-    }
-};
+//         fileReader.readAsDataURL(uploadimg.files[0]);
+//     } else {
+//         alert("This file is too large!");
+//     }
+// };
 
 function preLoadCalculations(){
     array = getData;
@@ -200,11 +200,12 @@ function showInfo(){
 }
 
 function readInfo(pic, Title, Author, Publisher, Year){
-    imgInput.src = pic;
+    // imgInput.src = pic;
     title.value = Title;
     author.value = Author;
     publisher.value = Publisher;
     year.value = Year;
+    uploadimg.value = pic
 
     darkBg.classList.add('active');
     popupForm.classList.add('active');
@@ -214,7 +215,7 @@ function readInfo(pic, Title, Author, Publisher, Year){
         input.disabled = true;
     });
 
-    imgHolder.style.pointerEvents = "none";
+    // imgHolder.style.pointerEvents = "none";
 }
 
 function editInfo(id, pic, Title, Author, Publisher, Year){
@@ -232,11 +233,12 @@ function editInfo(id, pic, Title, Author, Publisher, Year){
         year: Year
     };
 
-    imgInput.src = pic;
+    // imgInput.src = pic;
     title.value = Title;
     author.value = Author;
     publisher.value = Publisher;
     year.value = Year;
+    uploadimg.value = pic
 
     darkBg.classList.add('active');
     popupForm.classList.add('active');
@@ -247,7 +249,7 @@ function editInfo(id, pic, Title, Author, Publisher, Year){
         input.disabled = false;
     });
 
-    imgHolder.style.pointerEvents = "auto";
+    // imgHolder.style.pointerEvents = "auto";
 }
 
 function deleteInfo(index){
@@ -311,7 +313,7 @@ form.addEventListener('submit', (e) => {
 
     const information = {
         id: Date.now(),
-        picture: imgInput.src,
+        picture: uploadimg.value,
         title: title.value,
         author: author.value,
         publisher: publisher.value,
