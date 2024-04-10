@@ -20,46 +20,42 @@ var bookInfo = document.querySelector(".bookInfo");
 var table = document.querySelector("table");
 var filterData = document.getElementById("search");
 
+var originalData = localStorage.getItem('bookProfile') ? JSON.parse(localStorage.getItem('bookProfile')) : [];
+var getData = [...originalData];
+
 // Call fetchBooks on page load
-console.log("start")
 window.addEventListener('load', () => {
     fetchBooks()
         .then(response => {
             // Parse the JSON response body
-            const books = JSON.parse(response.body);
+            let data = JSON.parse(response.body)
 
-            // Convert each object in the array to the expected format
             const formattedData = data.map((book, index) => ({
-                id: Date.now() + index, // Generating a unique ID for each item (you may need a different approach for generating IDs)
-                picture: 'file:///Users/divya/Documents/GitHub/Social_Club/images/placeholder.jpeg', // You may replace this with the actual picture URL if available
+                id: Date.now() + index,
+                picture: book.Picture,
                 title: book.Title,
                 author: book.Author,
                 publisher: book.Publisher,
                 year: book.Year
             }));
 
+            console.log(formattedData)
+
             // Store the fetched data in local storage
             localStorage.setItem('bookProfile', JSON.stringify(formattedData));
-            // Update originalData and getData with the fetched data
-            originalData = localStorage.getItem('bookProfile') ? JSON.parse(localStorage.getItem('bookProfile')) : [];
-            getData = [...originalData];
-            // Update the UI to reflect the fetched data
+
             showInfo();
             highlightIndexBtn();
             displayIndexBtn();
         })
         .catch(error => {
             console.error('Error fetching books on page load:', error);
-            // If API call fails, initialize originalData from local storage
-            originalData = localStorage.getItem('bookProfile') ? JSON.parse(localStorage.getItem('bookProfile')) : [];
-            getData = [...originalData];
-            // Update the UI to reflect the local storage data
+
             showInfo();
             highlightIndexBtn();
             displayIndexBtn();
         });
 });
-
 
 
 var isEdit = false;
@@ -331,7 +327,8 @@ form.addEventListener('submit', (e) => {
             "Title": information.title,
             "Author": information.author,
             "Publisher": information.publisher,
-            "Year": information.year
+            "Year": information.year,
+            "Picture": information.picture
             }
         }
         addBook(book)
@@ -345,7 +342,8 @@ form.addEventListener('submit', (e) => {
             "Title": information.title,
             "Author": information.author,
             "Publisher": information.publisher,
-            "Year": information.year
+            "Year": information.year,
+            "Picture": information.picture
             }
         }
         updateBook(updatedBook)
@@ -492,9 +490,9 @@ async function addBook(book) {
     try {
         const response = await axios.post(apiUrl, book,
             {
-                headers: {
-                'Authorization': id_token
-                }
+                // headers: {
+                // 'Authorization': id_token
+                // }
             });
         console.log(response.data);
         return response.data;
@@ -509,9 +507,9 @@ async function updateBook(updatedBook) {
     try {
         const response = await axios.put(apiUrl, updatedBook,
             {
-                headers: {
-                'Authorization': id_token
-                }
+                // headers: {
+                // 'Authorization': id_token
+                // }
             });
         console.log(response.data);
         return response.data;
@@ -526,9 +524,9 @@ async function deleteBook(title) {
     try {
         const response = await axios.delete(apiUrl,
             {
-                headers: {
-                'Authorization': id_token
-                },
+                // headers: {
+                // 'Authorization': id_token
+                // },
                 data: title
             });
         console.log(response.data);
