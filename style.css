@@ -403,7 +403,7 @@ form .inputFieldContainer .titleField input,
 form .inputFieldContainer .authorField input,
 form .inputFieldContainer .publisherField input,
 form .inputFieldContainer .yearField input {
-    width: 200px;
+    width: 350px;
 }
 
 .inputFieldContainer .form_control{
