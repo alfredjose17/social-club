@@ -29,6 +29,7 @@ A fully serverless bookstore application built using **Terraform** for IaC, **AW
 cd terraform/
 terraform init
 terraform apply
+```
 
 ## 🌐 API Endpoints
 
