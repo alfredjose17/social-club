@@ -1,4 +1,4 @@
-# IAM role for Lambda to interact with RDS
+# IAM role for Lambda to interact with DynamoDB
 resource "aws_iam_role" "lambda_execution_role" {
   name = "lambda-execution-role"
 
@@ -22,7 +22,8 @@ resource "aws_lambda_function" "api_lambda_function" {
   handler       = "lambda_functions.lambda_handler"  # Lambda function handler
   runtime       = "python3.8"  # Use the runtime you are using
   s3_bucket     = aws_s3_bucket.bookstore_bucket.bucket
-  s3_key        = "lambda_functions.zip"  # Reference to the S3 location of your Lambda code
+  s3_key        = aws_s3_object.lambda_functions_zip.key  # Reference to the S3 location of your Lambda code
+  source_code_hash = filebase64sha256("../lambda/lambda_functions.zip")  # Trigger update when zip file changes
 
   environment {
     variables = {
@@ -30,7 +31,10 @@ resource "aws_lambda_function" "api_lambda_function" {
     }
   }
 
-  depends_on = [aws_iam_role.lambda_execution_role]  # Ensure IAM role is created before Lambda
+  depends_on = [
+    aws_iam_role.lambda_execution_role,
+    aws_s3_object.lambda_functions_zip  # Ensure S3 object is uploaded before Lambda
+  ]
 }
 
 # IAM Policy for Lambda to interact with DynamoDB
