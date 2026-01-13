@@ -6,7 +6,7 @@ A modern, fully serverless bookstore application demonstrating cloud-native arch
 
 ### Landing Page
 ![Landing Page](screenshots/landing-page.png)
-*Beautiful landing page featuring three prominent book covers (The Great Gatsby, Ikigai, The 48 Laws of Power) displayed on a dark red to black gradient background. Clean navigation with "Social Club" branding and login button.*
+*landing page featuring three prominent book covers (The Great Gatsby, Ikigai, The 48 Laws of Power) displayed on a dark red to black gradient background. Clean navigation with "Social Club" branding and login button.*
 
 ### Book Management Dashboard
 ![Book Management Dashboard](screenshots/book-management-dashboard.png)
@@ -99,7 +99,7 @@ social-club/
 ### Prerequisites
 
 - AWS Account with appropriate permissions
-- Terraform >= 1.0 installed
+- Terraform installed
 - AWS CLI configured with credentials
 - Python 3.8+ (for local Lambda development)
 
@@ -151,11 +151,6 @@ social-club/
    ```
 
 ## 🌐 API Documentation
-
-### Base URL
-```
-https://<api-gateway-id>.execute-api.<region>.amazonaws.com/dev/books
-```
 
 ### Endpoints
 
@@ -233,8 +228,8 @@ This project demonstrates:
 
 ## 📈 Future Enhancements
 
-- [ ] Add pagination for book listings
-- [ ] Implement search functionality
+- [x] Add pagination for book listings
+- [x] Implement search functionality
 - [ ] Add book categories and filtering
 - [ ] Include book ratings and reviews
 - [ ] Add user profile management
@@ -249,11 +244,5 @@ This project is open source and available for educational purposes.
 ## 👤 Author
 
 Built as a demonstration of cloud-native serverless architecture and Infrastructure as Code practices.
-
-## 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome! Feel free to check the issues page.
-
----
 
 **Note**: This project is designed for learning and demonstration purposes. Make sure to configure appropriate security settings for production use.
