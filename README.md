@@ -6,7 +6,7 @@ A modern, fully serverless bookstore application demonstrating cloud-native arch
 
 ### Landing Page
 ![Landing Page](screenshots/landing-page.png)
-*landing page featuring three prominent book covers (The Great Gatsby, Ikigai, The 48 Laws of Power) displayed on a dark red to black gradient background. Clean navigation with "Social Club" branding and login button.*
+*Landing page featuring three prominent book covers (The Great Gatsby, Ikigai, The 48 Laws of Power) displayed on a dark red to black gradient background. Clean navigation with "Social Club" branding and login button.*
 
 ### Book Management Dashboard
 ![Book Management Dashboard](screenshots/book-management-dashboard.png)
