@@ -278,6 +278,13 @@ table tr .empty{
     padding: 20px;
 }
 
+.popup header .modalTitle {
+    color: #fff;
+    margin: 0;
+    font-size: 20px;
+    font-weight: 500;
+}
+
 .popup header .closeBtn {
     font-size: 24px;
     color: var(--dark7);
